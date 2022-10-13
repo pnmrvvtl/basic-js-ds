@@ -7,40 +7,46 @@ const { NotImplementedError } = require('../extensions/index.js');
 * using Node from extensions
 */
 class BinarySearchTree {
-
+  constructor() {
+    this.data = [];
+  }
   root() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    return this.data[0] ? { data:this.data[0]} : null;
   }
 
-  add(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  add(data) {
+    this.data.push(data);
   }
 
-  has(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  has(data) {
+    if (this.data.find(el => el === data) !== undefined) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
-  find(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  find(data) {
+    if (this.data.find(el => el === data) !== undefined) {
+      return { data: data};
+    } else return null;
   }
 
-  remove(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+
+  remove(data) {
+    if (this.data.find(el => el === data) !== undefined) {
+      this.data.splice(this.data.findIndex(el => el === data), 1)
+    }
   }
 
   min() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    const sorted = [...this.data].sort((a, b) => a - b);
+    return sorted[0];
   }
 
   max() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    const sorted = [...this.data].sort((a, b) => a - b);
+    return sorted[sorted.length - 1];
   }
 }
 
