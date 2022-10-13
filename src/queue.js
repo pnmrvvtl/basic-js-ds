@@ -14,17 +14,35 @@ const { NotImplementedError } = require('../extensions/index.js');
  * queue.getUnderlyingList() // returns { value: 3, next: null }
  */
 class Queue {
-
+  constructor() {
+    this.data = [];
+  }
   getUnderlyingList() {
+    let curr = {
+      value: this.data[this.data.length - 1],
+      next: null
+    }
 
+    for (let i = this.data.length - 2; i >= 0; i--) {
+      let next = {
+        value: this.data[i],
+        next: curr
+      }
+      curr = next;
+    }
+    return curr;
   }
 
-  enqueue(/* value */) {
-
+  enqueue(value) {
+    this.data.push(value);
   }
 
   dequeue() {
-
+    if(this.data[0]) {
+      let res = this.data[0];
+      this.data.splice(0, 1);
+      return res;
+    } else return null;
   }
 }
 
